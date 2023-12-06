@@ -22,6 +22,7 @@
     position: absolute;
     right: -32px;
     bottom: 32px;
+    color: var(--inverted-primary-color);
 }
 
 .items {
@@ -40,6 +41,7 @@
 .link {
     margin-left: 10px;
     opacity: 1;
+    color: var(--inverted-primary-color);
 }
 
 .icon {
