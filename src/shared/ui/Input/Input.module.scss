@@ -1,0 +1,14 @@
+.InputWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.input {
+    border: 1px solid var(--primary-color);
+    outline: none;
+
+    &:focus {
+        outline: none;
+    }
+}
