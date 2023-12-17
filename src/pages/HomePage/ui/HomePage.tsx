@@ -11,11 +11,6 @@ const HomePage = () => {
     return (
         <div>
             {t('Главная страница')}
-            <Input
-                onChange={onChange}
-                value={value}
-                placeholder="Name"
-            />
         </div>
     );
 };
