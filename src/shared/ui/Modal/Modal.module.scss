@@ -26,6 +26,9 @@
     transform: scale(0.5);
     width: 60%;
     max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .opened {
