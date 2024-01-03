@@ -41,7 +41,7 @@ export const ProfileCard = (props: ProfileCardProps) => {
         onChangeCountry,
         onChangeCurrency,
     } = props;
-    const { t } = useTranslation('profile');
+    const { t } = useTranslation();
 
     if (isLoading) {
         return (
@@ -55,8 +55,8 @@ export const ProfileCard = (props: ProfileCardProps) => {
         return (
             <div className={classNames(cls.ProfileCard, {}, [className, cls.error])}>
                 <Text
-                    title={t('Произошла ошибка при загрузке')}
-                    text={t('Попробуйте перезагрузить страницу')}
+                    title={t('Возникла ошибка при загрузке')}
+                    text={t('Перезагрузите страницу')}
                     theme={TextTheme.ERROR}
                     align={TextAlign.CENTER}
                 />
