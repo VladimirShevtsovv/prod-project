@@ -1,13 +1,14 @@
 import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Page } from 'shared/ui/Page/Page';
 
 const HomePage = memo(() => {
     const { t } = useTranslation('home');
 
     return (
-        <div>
+        <Page>
             {t('Главная страница')}
-        </div>
+        </Page>
     );
 });
 
