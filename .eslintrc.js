@@ -42,7 +42,7 @@ module.exports = {
                 ignoreAttribute: ['data-testid', 'to', 'placeholder', 'alt'],
             },
         ],
-        'max-len': ['error', { code: 110, ignoreComments: true }],
+        'max-len': ['error', { code: 125, ignoreComments: true }],
         'linebreak-style': ['error', 'windows'],
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',

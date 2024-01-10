@@ -1,10 +1,14 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
+import { ThemeDecorator } from 'shared/config/storybook/ThemeDecorator/ThemeDecorator';
+import { Theme } from 'app/providers/ThemeProvider';
+import { PrimaryDark } from 'shared/ui/Text/Text.stories';
+import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Page } from './Page';
 
 export default {
-    title: 'shared/Page',
+    title: 'widgets/Page',
     component: Page,
     argTypes: {
         backgroundColor: { control: 'color' },
@@ -15,3 +19,4 @@ const Template: ComponentStory<typeof Page> = (args) => <Page {...args} />;
 
 export const Normal = Template.bind({});
 Normal.args = {};
+Normal.decorators = [StoreDecorator({})];
