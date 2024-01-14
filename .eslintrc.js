@@ -18,6 +18,7 @@ module.exports = {
         '@typescript-eslint',
         'i18next',
         'react-hooks',
+        'ulbi-tv-plugin',
     ],
     rules: {
         'react/jsx-indent': [2, 4],
@@ -39,10 +40,10 @@ module.exports = {
             'error',
             {
                 markupOnly: true,
-                ignoreAttribute: ['data-testid', 'to', 'placeholder', 'alt'],
+                ignoreAttribute: ['data-testid', 'to', 'placeholder', 'alt', 'target'],
             },
         ],
-        'max-len': ['error', { code: 125, ignoreComments: true }],
+        'max-len': ['error', { code: 130, ignoreComments: true }],
         'linebreak-style': ['error', 'windows'],
         'jsx-a11y/no-static-element-interactions': 'off',
         'jsx-a11y/click-events-have-key-events': 'off',
@@ -50,6 +51,7 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error', // Checks effect dependencies
         'no-param-reassign': 'off',
         'no-undef': 'off',
+        'ulbi-tv-plugin/path-checker': 'error',
     },
     globals: {
         __IS_DEV__: true,

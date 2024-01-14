@@ -1,9 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import {
-    DynamicModuleLoader, ReducersList,
-} from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
-import { articleDetailsReducer } from 'entities/Article/model/slice/articleSlice';
-import { memo, useCallback, useEffect } from 'react';
+import { DynamicModuleLoader, ReducersList } from 'shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import { memo, useCallback } from 'react';
 import { useAppDispatch } from 'shared/lib/hooks/useAppDispatch';
 import { useSelector } from 'react-redux';
 import { Text, TextAlign, TextSize } from 'shared/ui/Text/Text';
@@ -13,6 +10,7 @@ import EyeIcon from 'shared/assetes/icons/eye-20-20.svg';
 import CalendarIcon from 'shared/assetes/icons/calendar-20-20.svg';
 import { Icon } from 'shared/ui/Icon/Icon';
 import { useInitialEffect } from 'shared/lib/hooks/useInitialEffect/useInitialEffect';
+import { articleDetailsReducer } from '../../model/slice/articleSlice';
 import {
     getArticleDetailsData,
     getArticleDetailsError,
