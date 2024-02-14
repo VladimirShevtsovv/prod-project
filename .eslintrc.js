@@ -50,6 +50,8 @@ module.exports = {
                     'justify',
                     'role',
                     'as',
+                    'fallback',
+                    'border',
                 ],
             },
         ],

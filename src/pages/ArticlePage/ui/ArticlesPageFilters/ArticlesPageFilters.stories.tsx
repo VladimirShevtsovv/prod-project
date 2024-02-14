@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-import { Light } from 'pages/HomePage/ui/HomePage.stories';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { Light } from '@/pages/HomePage/ui/HomePage.stories';
 import { ArticlesPageFilters } from './ArticlesPageFilters';
 
 export default {

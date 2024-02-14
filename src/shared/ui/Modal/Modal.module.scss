@@ -7,6 +7,9 @@
     pointer-events: none;
     opacity: 0;
     z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .overlay {
@@ -44,5 +47,11 @@
 .closed {
     .content {
         transform: scale(0);
+    }
+}
+
+.isClosing {
+    .content {
+        transform: scale(0.2);
     }
 }

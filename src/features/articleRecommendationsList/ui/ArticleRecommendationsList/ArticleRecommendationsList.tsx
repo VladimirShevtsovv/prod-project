@@ -1,9 +1,9 @@
-import { classNames } from 'shared/lib/classNames/classNames';
 import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
-import { Text, TextSize } from 'shared/ui/Text/Text';
-import { Article, ArticleList } from 'entities/Article';
-import { VStack } from 'shared/ui/Stack';
+import { classNames } from '@/shared/lib/classNames/classNames';
+import { Text, TextSize } from '@/shared/ui/Text/Text';
+import { Article, ArticleList } from '@/entities/Article';
+import { VStack } from '@/shared/ui/Stack';
 import {
     useArticleRecommendationsList,
 } from '../../api/aritcleRecommendationsApi';
@@ -17,7 +17,7 @@ export const ArticleRecommendationsList = memo((props: ArticleRecommendationsLis
     const { t } = useTranslation();
     const { isLoading, data: articles, error } = useArticleRecommendationsList(3);
 
-    if (isLoading || error) {
+    if (isLoading || error || !articles) {
         return null;
     }
 

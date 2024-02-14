@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { StoreDecorator } from 'shared/config/storybook/StoreDecorator/StoreDecorator';
-import { Light } from 'pages/AboutPage/ui/AboutPage.stories';
+import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
+import { Light } from '@/pages/AboutPage/ui/AboutPage.stories';
 import { ArticleInfiniteList } from './ArticleInfiniteList';
 
 export default {
