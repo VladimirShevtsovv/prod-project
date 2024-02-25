@@ -1,11 +1,5 @@
 import { User } from '@/entities/User';
-import { ArticleType } from '../../model/consts/consts';
-
-export enum ArticleBlockType {
-    CODE = 'CODE',
-    IMAGE = 'IMAGE',
-    TEXT = 'TEXT',
-}
+import { ArticleBlockType, ArticleType } from '../../model/consts/consts';
 
 export interface ArticleBlockBase {
     id: string;

@@ -36,7 +36,7 @@ export function Dropdown(props: DropdownProps) {
             <Menu.Items
                 className={classNames(cls.menu, {}, menuClasses)}
             >
-                {items.map((item) => {
+                {items.map((item, index) => {
                     const content = ({ active }: { active: boolean }) => (
                         <button
                             type="button"
@@ -54,6 +54,8 @@ export function Dropdown(props: DropdownProps) {
                                 as={AppLink}
                                 to={item.href}
                                 disabled={item.disabled}
+                                /* eslint-disable-next-line react/no-array-index-key */
+                                key={`dropdown-key${index}`}
                             >
                                 {content}
                             </Menu.Item>
@@ -62,6 +64,8 @@ export function Dropdown(props: DropdownProps) {
 
                     return (
                         <Menu.Item
+                            /* eslint-disable-next-line react/no-array-index-key */
+                            key={`dropdown-key${index}`}
                             as={Fragment}
                             disabled={item.disabled}
                         >
