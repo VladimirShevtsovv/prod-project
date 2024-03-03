@@ -24,7 +24,7 @@ Primary.args = {
         first: 'asd',
         city: 'asf',
         currency: Currency.USD,
-        avatar: '123',
+        avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRY_lm5FQuuLFW7Zscqs1AxWplhOEeAOoJxwA&usqp=CAU',
     },
 };
 
