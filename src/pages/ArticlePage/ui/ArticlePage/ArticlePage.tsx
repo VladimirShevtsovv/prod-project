@@ -23,7 +23,7 @@ const reducers: ReducersList = {
 
 const ArticlePage = memo((props: ArticlePageProps) => {
     const { className } = props;
-    const { t } = useTranslation('article');
+    const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const [searchParams] = useSearchParams();
 

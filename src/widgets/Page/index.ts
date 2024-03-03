@@ -1,1 +1,1 @@
-export { Page } from '@/widgets/Page/ui/Page';
+export { PAGE_ID, Page } from './ui/Page/Page';

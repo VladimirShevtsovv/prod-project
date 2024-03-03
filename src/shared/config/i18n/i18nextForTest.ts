@@ -6,13 +6,12 @@ i18n
     .init({
         lng: 'ru',
         fallbackLng: 'ru',
-        ns: ['translationsNS'],
-        defaultNS: 'translationsNS',
         debug: false,
+
         interpolation: {
-            escapeValue: false,
+            escapeValue: false, // not needed for react!!
         },
-        resources: { ru: { translationsNS: {} } },
+        resources: { ru: { translations: {} } },
     });
 
 export default i18n;
