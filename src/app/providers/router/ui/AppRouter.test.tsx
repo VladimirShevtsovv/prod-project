@@ -16,7 +16,7 @@ describe('app/router/AppRouter', () => {
 
     test('Страница не найдена', async () => {
         componentRender(<AppRouter />, {
-            route: '/asfasfasfasf',
+            route: '/asfasfasfasfsd',
         });
 
         const page = await screen.findByTestId('NotFoundPage');
