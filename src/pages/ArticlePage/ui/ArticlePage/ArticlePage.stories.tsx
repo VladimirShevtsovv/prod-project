@@ -13,7 +13,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticlesPage>;
 
-const Template: ComponentStory<typeof ArticlesPage> = (args) => <ArticlesPage {...args} />;
+const Template: ComponentStory<typeof ArticlesPage> = (args) => (
+    <ArticlesPage {...args} />
+);
 
 const data = {
     view: ArticleView.BIG,
@@ -31,39 +33,35 @@ const data = {
         username: 'Ulbi tv',
     },
     type: ['IT'],
-    blocks:
-    [
+    blocks: [
         {
             id: '1',
             type: 'TEXT',
             title: 'Заголовок этого блока',
-            paragraphs: [
-                'test',
-            ],
+            paragraphs: ['test'],
         },
         {
             id: '5',
             type: 'TEXT',
             title: 'Заголовок этого блока',
-            paragraphs: [
-                'test',
-            ],
+            paragraphs: ['test'],
         },
     ],
-
 };
 
 export const Normal = Template.bind({});
 Normal.args = {};
-Normal.decorators = [StoreDecorator({
-    articlesPage: {
-        isLoading: false,
-        error: undefined,
-        ids: [],
-        entities: {},
-        view: ArticleView.BIG,
-        page: 1,
-        hasMore: true,
-        _inited: false,
-    },
-})];
+Normal.decorators = [
+    StoreDecorator({
+        articlesPage: {
+            isLoading: false,
+            error: undefined,
+            ids: [],
+            entities: {},
+            view: ArticleView.BIG,
+            page: 1,
+            hasMore: true,
+            _inited: false,
+        },
+    }),
+];

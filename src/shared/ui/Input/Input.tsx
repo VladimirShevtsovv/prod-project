@@ -1,19 +1,26 @@
 import React, {
-    InputHTMLAttributes, memo, MutableRefObject, useEffect, useRef,
+    InputHTMLAttributes,
+    memo,
+    MutableRefObject,
+    useEffect,
+    useRef,
 } from 'react';
 import { classNames, Mods } from '@/shared/lib/classNames/classNames';
 import cls from './Input.module.scss';
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readonly'>
-interface inputProps extends HTMLInputProps{
-    className? : string;
-    value? : string | number;
+type HTMLInputProps = Omit<
+    InputHTMLAttributes<HTMLInputElement>,
+    'value' | 'onChange' | 'readonly'
+>;
+interface inputProps extends HTMLInputProps {
+    className?: string;
+    value?: string | number;
     onChange?: (value: string) => void;
     autoFocus?: boolean;
-    readonly? : boolean;
+    readonly?: boolean;
 }
 
-export const Input = memo((props : inputProps) => {
+export const Input = memo((props: inputProps) => {
     const {
         className,
         value,
@@ -42,9 +49,7 @@ export const Input = memo((props : inputProps) => {
     return (
         <div className={classNames(cls.InputWrapper, mods, [className])}>
             {placeholder && (
-                <div className={cls.placeholder}>
-                    {placeholder}
-                </div>
+                <div className={cls.placeholder}>{placeholder}</div>
             )}
             <input
                 ref={ref}

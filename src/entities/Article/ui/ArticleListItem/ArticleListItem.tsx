@@ -24,9 +24,7 @@ interface ArticleListItemProps {
 }
 
 export const ArticleListItem = memo((props: ArticleListItemProps) => {
-    const {
-        className, article, view, target,
-    } = props;
+    const { className, article, view, target } = props;
     const { t } = useTranslation();
 
     const types = <Text text={article.type.join(', ')} className={cls.types} />;
@@ -43,11 +41,19 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         ) as ArticleTextBlock;
 
         return (
-            <div className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}>
+            <div
+                className={classNames(cls.ArticleListItem, {}, [
+                    className,
+                    cls[view],
+                ])}
+            >
                 <Card className={cls.card}>
                     <div className={cls.header}>
                         <Avatar size={30} src={article.user.avatar} />
-                        <Text text={article.user.username} className={cls.username} />
+                        <Text
+                            text={article.user.username}
+                            className={cls.username}
+                        />
                         <Text text={article.createdAt} className={cls.date} />
                     </div>
                     <Text title={article.title} className={cls.title} />
@@ -59,7 +65,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
                         alt={article.title}
                     />
                     {textBlock && (
-                        <ArticleTextBlockComponent block={textBlock} className={cls.textBlock} />
+                        <ArticleTextBlockComponent
+                            block={textBlock}
+                            className={cls.textBlock}
+                        />
                     )}
                     <div className={cls.footer}>
                         <AppLink
@@ -81,7 +90,10 @@ export const ArticleListItem = memo((props: ArticleListItemProps) => {
         <AppLink
             target={target}
             to={getRouteArticleDetails(article.id)}
-            className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+            className={classNames(cls.ArticleListItem, {}, [
+                className,
+                cls[view],
+            ])}
         >
             <Card className={cls.card}>
                 <div className={cls.imageWrapper}>

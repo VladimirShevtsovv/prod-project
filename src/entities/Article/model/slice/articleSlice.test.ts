@@ -18,7 +18,8 @@ const data = {
     },
 };
 const errorData = {
-    message: 'test', name: '403',
+    message: 'test',
+    name: '403',
 };
 
 describe('articleSlice.test', () => {
@@ -28,10 +29,12 @@ describe('articleSlice.test', () => {
             error: 'error',
         };
 
-        expect(articleDetailsReducer(
-            state as ArticleDetailsSchema,
-            fetchArticleById.pending,
-        )).toEqual({
+        expect(
+            articleDetailsReducer(
+                state as ArticleDetailsSchema,
+                fetchArticleById.pending,
+            ),
+        ).toEqual({
             isLoading: true,
             error: undefined,
         });
@@ -42,10 +45,12 @@ describe('articleSlice.test', () => {
             isLoading: true,
         };
 
-        expect(articleDetailsReducer(
-            state as ArticleDetailsSchema,
-            fetchArticleById.fulfilled(data, '', ''),
-        )).toEqual({
+        expect(
+            articleDetailsReducer(
+                state as ArticleDetailsSchema,
+                fetchArticleById.fulfilled(data, '', ''),
+            ),
+        ).toEqual({
             isLoading: false,
             data,
         });

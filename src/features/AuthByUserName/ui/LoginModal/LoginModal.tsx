@@ -6,17 +6,13 @@ import { LoginFormAsync } from '../LoginForm/LoginForm.async';
 import cls from './LoginModal.module.scss';
 
 interface LoginModalProps {
-    className? : string;
+    className?: string;
     isOpen: boolean;
     onClose: () => void;
 }
 
-export const LoginModal = (props:LoginModalProps) => {
-    const {
-        className,
-        isOpen,
-        onClose,
-    } = props;
+export const LoginModal = (props: LoginModalProps) => {
+    const { className, isOpen, onClose } = props;
     return (
         <Modal
             className={classNames(cls.LoginModal, {}, [className])}

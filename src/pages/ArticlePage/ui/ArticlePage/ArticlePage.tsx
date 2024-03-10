@@ -4,7 +4,10 @@ import { useSearchParams } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { useInitialEffect } from '@/shared/lib/hooks/useInitialEffect/useInitialEffect';
-import { DynamicModuleLoader, ReducersList } from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
+import {
+    DynamicModuleLoader,
+    ReducersList,
+} from '@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader';
 import { initArticlesPage } from '../../model/services/initArticlesPage/initArticlesPage';
 import cls from './ArticlePage.module.scss';
 import { articlesPageReducer } from '../../model/slices/articlesPageSlice';

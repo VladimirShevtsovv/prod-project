@@ -1,35 +1,33 @@
 {
-  "compilerOptions": {
-    "outDir": "./dist/",
-    "noImplicitAny": true,
-    "module": "esnext",
-    "target": "es5",
-    "jsx": "react-jsx",
-    "allowJs": true,
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "strict": true,
-    "paths": {
-      "@/*": [
-        "./src/*"
-      ]
-    },
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "isolatedModules": true,
-  },
-  "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS"
-    }
-  },
-  "include": [
-    "./config/jest/*.ts",
-    "./config/jest/*.tsx",
-    "./webpack.config.ts",
-    "./src/**/*.tsx",
-    "./src/**/*.ts",
-    "./config/storybook/webpack.config.ts",
-    "./config/build/loaders/buildCssLoader.ts"
-  ]
+        "outDir": "./dist/",
+        "noImplicitAny": true,
+        "module": "esnext",
+        "target": "es5",
+        "jsx": "react-jsx",
+        "allowJs": true,
+        "moduleResolution": "node",
+        "baseUrl": ".",
+        "strict": true,
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "isolatedModules": true
+    },
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS"
+        }
+    },
+    "include": [
+        "./config/jest/*.ts",
+        "./config/jest/*.tsx",
+        "./webpack.config.ts",
+        "./src/**/*.tsx",
+        "./src/**/*.ts",
+        "./config/storybook/webpack.config.ts",
+        "./config/build/loaders/buildCssLoader.ts"
+    ]
 }

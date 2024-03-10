@@ -13,7 +13,7 @@ export enum ArticleType {
     ALL = 'ALL',
     IT = 'IT',
     SCIENCE = 'SCIENCE',
-    ECONOMICS = 'ECONOMICS'
+    ECONOMICS = 'ECONOMICS',
 }
 
 export enum ArticleBlockType {

@@ -13,7 +13,9 @@ export default {
     },
 } as ComponentMeta<typeof ArticleDetails>;
 
-const Template: ComponentStory<typeof ArticleDetails> = (args) => <ArticleDetails {...args} />;
+const Template: ComponentStory<typeof ArticleDetails> = (args) => (
+    <ArticleDetails {...args} />
+);
 
 const article: Article = {
     id: '1',
@@ -52,30 +54,35 @@ const article: Article = {
                 'Существуют и другие способы запуска JS-кода в браузере. Так, если говорить об обычном использовании программ на JavaScript, они загружаются в браузер для обеспечения работы веб-страниц. Как правило, код оформляют в виде отдельных файлов с расширением .js, которые подключают к веб-страницам, но программный код можно включать и непосредственно в код страницы. Всё это делается с помощью тега <script>. Когда браузер обнаруживает такой код, он выполняет его. Подробности о теге script можно посмотреть на сайте w3school.com. В частности, рассмотрим пример, демонстрирующий работу с веб-страницей средствами JavaScript, приведённый на этом ресурсе. Этот пример можно запустить и средствами данного ресурса (ищите кнопку Try it Yourself), но мы поступим немного иначе. А именно, создадим в каком-нибудь текстовом редакторе (например — в VS Code или в Notepad++) новый файл, который назовём hello.html, и добавим в него следующий код:',
             ],
         },
-
     ],
 };
 
 export const Normal = Template.bind({});
 Normal.args = {};
-Normal.decorators = [StoreDecorator({
-    articleDetails: {
-        data: article,
-    },
-})];
+Normal.decorators = [
+    StoreDecorator({
+        articleDetails: {
+            data: article,
+        },
+    }),
+];
 
 export const Loading = Template.bind({});
 Loading.args = {};
-Loading.decorators = [StoreDecorator({
-    articleDetails: {
-        isLoading: true,
-    },
-})];
+Loading.decorators = [
+    StoreDecorator({
+        articleDetails: {
+            isLoading: true,
+        },
+    }),
+];
 
 export const Error = Template.bind({});
 Error.args = {};
-Error.decorators = [StoreDecorator({
-    articleDetails: {
-        error: 'error',
-    },
-})];
+Error.decorators = [
+    StoreDecorator({
+        articleDetails: {
+            error: 'error',
+        },
+    }),
+];

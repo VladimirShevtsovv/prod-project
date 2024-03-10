@@ -18,13 +18,19 @@ export const parameters = {
         default: 'light',
         list: [
             {
-                name: 'light', class: Theme.LIGHT, color: '#ffffff',
+                name: 'light',
+                class: Theme.LIGHT,
+                color: '#ffffff',
             },
             {
-                name: 'dark', class: Theme.DARK, color: '#000000',
+                name: 'dark',
+                class: Theme.DARK,
+                color: '#000000',
             },
             {
-                name: 'orange', class: Theme.WHEAT, color: '#d9bba0',
+                name: 'orange',
+                class: Theme.WHEAT,
+                color: '#d9bba0',
             },
         ],
         target: '.app',

@@ -11,15 +11,14 @@ import { Article } from '../../model/types/article';
 
 interface ArticleListProps {
     className?: string;
-    articles: Article[]
+    articles: Article[];
     isLoading?: boolean;
     target?: HTMLAttributeAnchorTarget;
     view?: ArticleView;
 }
 
-const getSkeletons = (view: ArticleView) => new Array(view === ArticleView.SMALL ? 9 : 3)
-    .fill(0)
-    .map((item, index) => (
+const getSkeletons = (view: ArticleView) =>
+    new Array(view === ArticleView.SMALL ? 9 : 3).fill(0).map((item, index) => (
         // eslint-disable-next-line react/no-array-index-key
         <ArticleListItemSkeleton className={cls.card} key={index} view={view} />
     ));
@@ -46,17 +45,23 @@ export const ArticleList = memo((props: ArticleListProps) => {
 
     if (!isLoading && !articles.length) {
         return (
-            <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
+            <div
+                className={classNames(cls.ArticleList, {}, [
+                    className,
+                    cls[view],
+                ])}
+            >
                 <Text size={TextSize.L} title={t('Статьи не найдены')} />
             </div>
         );
     }
 
     return (
-        <HStack max className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-            {articles.length > 0
-                ? articles.map(renderArticle)
-                : null}
+        <HStack
+            max
+            className={classNames(cls.ArticleList, {}, [className, cls[view]])}
+        >
+            {articles.length > 0 ? articles.map(renderArticle) : null}
             {isLoading && getSkeletons(view)}
         </HStack>
     );
