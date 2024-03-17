@@ -60,6 +60,7 @@ module.exports = {
                     'fallback',
                     'border',
                     'align',
+                    'feature',
                 ],
             },
         ],
