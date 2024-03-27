@@ -3,9 +3,6 @@ import { memo, useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { ArticleSortField, ArticleType, ArticleView } from '@/entities/Article';
 import { classNames } from '@/shared/lib/classNames/classNames';
-
-import { Card } from '@/shared/ui/Card';
-import { Input } from '@/shared/ui/Input';
 import { SortOrder } from '@/shared/types/sort';
 import { useDebounce } from '@/shared/lib/hooks/useDebounce/useDebounce';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
@@ -22,6 +19,8 @@ import { articlesPageActions } from '../../model/slices/articlesPageSlice';
 import { ArticleSortSelector } from '@/features/ArticleSortSelector';
 import { ArticleTypeTabs } from '@/features/ArticleTypeTabs';
 import { ArticleViewSelector } from '@/features/ArticleViewSelector';
+import { Card } from '@/shared/ui/deprecated/Card';
+import { Input } from '@/shared/ui/deprecated/Input';
 
 interface ArticlesPageFiltersProps {
     className?: string;

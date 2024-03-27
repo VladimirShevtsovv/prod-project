@@ -2,9 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { memo, useCallback } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { Button } from '@/shared/ui/Button';
-import { Input } from '@/shared/ui/Input';
-import { Text, TextTheme } from '@/shared/ui/Text';
 import {
     DynamicModuleLoader,
     ReducersList,
@@ -17,6 +14,9 @@ import { getLoginIsLoading } from '../../model/selectors/getLoginIsLoading/getLo
 import cls from './LoginForm.module.scss';
 import { loginActions, loginReducer } from '../../model/slice/LoginSlice';
 import { loginByUserName } from '../../model/services/loginByUserName';
+import { TextTheme, Text } from '@/shared/ui/deprecated/Text';
+import { Button } from '@/shared/ui/deprecated/Button';
+import { Input } from '@/shared/ui/deprecated/Input';
 
 export interface LoginFormProps {
     className?: string;
