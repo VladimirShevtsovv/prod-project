@@ -1,6 +1,5 @@
 import { useTranslation } from 'react-i18next';
 import { HTMLAttributeAnchorTarget, memo } from 'react';
-import { HStack } from '@/shared/ui/redesigned/Stack';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text, TextSize } from '@/shared/ui/deprecated/Text';
 import { ArticleView } from '../../model/consts/consts';
@@ -19,8 +18,12 @@ interface ArticleListProps {
 
 const getSkeletons = (view: ArticleView) =>
     new Array(view === ArticleView.SMALL ? 9 : 3).fill(0).map((item, index) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <ArticleListItemSkeleton className={cls.card} key={index} view={view} />
+        <ArticleListItemSkeleton
+            className={cls.card}
+            /* eslint-disable-next-line react/no-array-index-key */
+            key={index}
+            view={view}
+        />
     ));
 
 export const ArticleList = memo((props: ArticleListProps) => {
@@ -32,16 +35,6 @@ export const ArticleList = memo((props: ArticleListProps) => {
         target,
     } = props;
     const { t } = useTranslation();
-
-    const renderArticle = (article: Article) => (
-        <ArticleListItem
-            article={article}
-            view={view}
-            className={cls.card}
-            key={article.id}
-            target={target}
-        />
-    );
 
     if (!isLoading && !articles.length) {
         return (
@@ -57,12 +50,20 @@ export const ArticleList = memo((props: ArticleListProps) => {
     }
 
     return (
-        <HStack
-            max
+        <div
             className={classNames(cls.ArticleList, {}, [className, cls[view]])}
+            data-testid="ArticleList"
         >
-            {articles.length > 0 ? articles.map(renderArticle) : null}
+            {articles.map((item) => (
+                <ArticleListItem
+                    article={item}
+                    view={view}
+                    target={target}
+                    key={item.id}
+                    className={cls.card}
+                />
+            ))}
             {isLoading && getSkeletons(view)}
-        </HStack>
+        </div>
     );
 });
