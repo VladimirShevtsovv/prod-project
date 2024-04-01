@@ -1,9 +1,9 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
-import { VStack } from '@/shared/ui/deprecated/Stack';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { EditableProfileCard } from '@/features/editableProfileCard';
 import { Page } from '@/widgets/Page';
+import { VStack } from '@/shared/ui/redesigned/Stack';
 
 interface ProfilePageProps {
     className?: string;

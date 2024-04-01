@@ -11,10 +11,10 @@ import { getRouteArticleDetails } from '@/shared/consts/router';
 import { Icon } from '@/shared/ui/deprecated/Icon';
 import { Card } from '@/shared/ui/deprecated/Card';
 import { Avatar } from '@/shared/ui/deprecated/Avatar';
-import { AppImage } from '@/shared/ui/deprecated/AppImage';
 import { AppLink } from '@/shared/ui/deprecated/AppLink';
 import { Button, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { Skeleton } from '@/shared/ui/deprecated/Skeleton';
+import { AppImage } from '@/shared/ui/redesigned/AppImage';
 
 interface ArticleListItemProps {
     className?: string;
