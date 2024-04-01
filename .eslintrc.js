@@ -61,6 +61,8 @@ module.exports = {
                     'border',
                     'align',
                     'feature',
+                    'color',
+                    'variant',
                 ],
             },
         ],

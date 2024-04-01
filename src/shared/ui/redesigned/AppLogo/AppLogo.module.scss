@@ -5,14 +5,16 @@
 
 .gradientBig {
     position: absolute;
-    background-image: radial-gradient(57.05% 57.05% at 49.84% 42.95%, rgb(94 211 243 / 20%) 0%, rgb(94 211 243 / 13.2%) 7.81%, rgb(94 211 243 / 8.3%) 29.69%, rgb(94 211 243 / 3.86%) 56.77%, rgb(94 211 243 / 2.19%) 77.6%, rgb(94 211 243 / 0%) 100%);
+    background: radial-gradient(57.05% 57.05% at 49.84% 42.95%, rgb(94 211 243 / 20%) 0%, rgb(94 211 243 / 13.2%) 7.81%, rgb(94 211 243 / 8.3%) 29.69%, rgb(94 211 243 / 3.86%) 56.77%, rgb(94 211 243 / 2.19%) 77.6%, rgb(94 211 243 / 0%) 100%);
     width: 300px;
     height: 300px;
     border-radius: 50%;
     opacity: 0.6;
+    pointer-events: none;
 }
 
 .gradientSmall {
+    pointer-events: none;
     position: absolute;
     width: 200px;
     height: 200px;
