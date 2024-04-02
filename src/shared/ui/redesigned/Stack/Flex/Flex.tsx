@@ -5,6 +5,7 @@ import cls from './Flex.module.scss';
 export type FlexJustify = 'start' | 'center' | 'end' | 'between';
 export type FlexAlign = 'start' | 'center' | 'end';
 export type FlexDirection = 'row' | 'column';
+export type FlexWrap = 'nowrap' | 'wrap';
 export type FlexGap = '4' | '8' | '16' | '24' | '32';
 
 const justifyClasses: Record<FlexJustify, string> = {
@@ -44,6 +45,7 @@ export interface FlexProps extends DivProps {
     justify?: FlexJustify;
     align?: FlexAlign;
     direction: FlexDirection;
+    wrap?: FlexWrap;
     gap?: FlexGap;
     max?: boolean;
 }
@@ -55,8 +57,10 @@ export const Flex = (props: FlexProps) => {
         justify = 'start',
         align = 'center',
         direction = 'row',
+        wrap = 'nowrap',
         gap,
         max,
+        ...otherProps
     } = props;
 
     const classes = [
@@ -64,6 +68,7 @@ export const Flex = (props: FlexProps) => {
         justifyClasses[justify],
         alignClasses[align],
         directionClasses[direction],
+        cls[wrap],
         gap && gapClasses[gap],
     ];
 
@@ -72,6 +77,8 @@ export const Flex = (props: FlexProps) => {
     };
 
     return (
-        <div className={classNames(cls.Flex, mods, classes)}>{children}</div>
+        <div className={classNames(cls.Flex, mods, classes)} {...otherProps}>
+            {children}
+        </div>
     );
 };
