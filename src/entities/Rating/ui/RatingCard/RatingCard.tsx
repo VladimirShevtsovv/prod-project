@@ -7,9 +7,9 @@ import { Button, ButtonSize, ButtonTheme } from '@/shared/ui/deprecated/Button';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Text } from '@/shared/ui/deprecated/Text';
 import { StarRating } from '@/shared/ui/deprecated/StarRating';
-import { Modal } from '@/shared/ui/deprecated/Modal';
+import { Modal } from '@/shared/ui/redesigned/Modal';
 import { Input } from '@/shared/ui/deprecated/Input';
-import { Drawer } from '@/shared/ui/deprecated/Drawer';
+import { Drawer } from '@/shared/ui/redesigned/Drawer';
 
 interface RatingCardProps {
     className?: string;

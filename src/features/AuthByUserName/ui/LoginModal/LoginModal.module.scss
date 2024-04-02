@@ -1,3 +1,9 @@
 .LoginModal {
     padding: 0;
+
+    div {
+        &::after {
+            background: var(--inverted-bg-color);
+        }
+    }
 }
