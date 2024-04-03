@@ -72,7 +72,12 @@ export const ArticleListItemSkeleton = memo(
 
         return (
             <div className={classNames(mainClass, {}, [className, cls[view]])}>
-                <Card className={cls.card} border="round">
+                <Card
+                    className={cls.card}
+                    border="round"
+                    fullHeight
+                    padding="0"
+                >
                     <div className={cls.imageWrapper}>
                         <Skeleton
                             width="100%"
