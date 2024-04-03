@@ -665,6 +665,60 @@
       "userId": "1",
       "text": "123",
       "id": "q7RqU4_"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "123",
+      "id": "Fv2m9Ym"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "2",
+      "id": "94SNg2I"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "1",
+      "id": "QlVvk4_"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "1",
+      "id": "qAvE-nA"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "2",
+      "id": "LUJ6pXc"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "2",
+      "id": "FXltKvJ"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "2",
+      "id": "mM56GEq"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "2",
+      "id": "rwtTtQE"
+    },
+    {
+      "articleId": "7",
+      "userId": "1",
+      "text": "2",
+      "id": "PtYdSJc"
     }
   ],
   "users": [
@@ -682,7 +736,7 @@
       },
       "avatar": "https://mobimg.b-cdn.net/v3/fetch/22/2207633df03a819cd72889249c8361a8.jpeg?w=1470&r=0.5625",
       "jsonSettings": {
-        "theme": "app_dark_theme",
+        "theme": "app_wheat_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
