@@ -28,6 +28,7 @@
         "./src/**/*.tsx",
         "./src/**/*.ts",
         "./config/storybook/webpack.config.ts",
+        "./config/storybook/main.ts",
         "./config/build/loaders/buildCssLoader.ts"
     ]
 }
