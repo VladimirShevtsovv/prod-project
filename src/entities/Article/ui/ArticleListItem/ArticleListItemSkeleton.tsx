@@ -74,7 +74,7 @@ export const ArticleListItemSkeleton = memo(
             <div className={classNames(mainClass, {}, [className, cls[view]])}>
                 <Card
                     className={cls.card}
-                    border="round"
+                    border="partial"
                     fullHeight
                     padding="0"
                 >
