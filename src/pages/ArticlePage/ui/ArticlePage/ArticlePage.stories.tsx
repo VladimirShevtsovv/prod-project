@@ -6,7 +6,7 @@ import { ArticleView } from '@/entities/Article';
 import ArticlesPage from './ArticlePage';
 
 export default {
-    title: 'pages/ArticlesPage',
+    title: 'pages/ArticlePage/ArticlePage',
     component: ArticlesPage,
     argTypes: {
         backgroundColor: { control: 'color' },

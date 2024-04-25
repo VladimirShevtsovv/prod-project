@@ -749,11 +749,12 @@
       ],
       "features": {
         "isArticleRatingEnabled": false,
-        "isCounterEnabled": false
+        "isCounterEnabled": false,
+        "isAppRedesigned": true
       },
       "avatar": "https://i.pinimg.com/originals/9a/e0/2d/9ae02d4b4288396108ef77830a59e060.jpg",
       "jsonSettings": {
-        "theme": "app_dark_theme",
+        "theme": "app_light_theme",
         "isFirstVisit": true,
         "settingsPageHasBeenOpen": false,
         "isArticlesPageWasOpened": true
@@ -882,6 +883,26 @@
       "rate": 3,
       "feedback": "",
       "id": "W5ahsnF"
+    },
+    {
+      "userId": "1",
+      "articleId": "18",
+      "rate": 4,
+      "feedback": "123",
+      "id": "i_McNqp"
+    },
+    {
+      "userId": "1",
+      "articleId": "8",
+      "rate": 3,
+      "id": "MX3yzVl"
+    },
+    {
+      "userId": "1",
+      "profileId": "4",
+      "rate": 5,
+      "feedback": "test",
+      "id": "VMo-0AV"
     }
   ],
   "profile-ratings": [
@@ -890,7 +911,7 @@
       "rate": 4,
       "feedback": "Хорошая статья",
       "userId": "1",
-      "profileId": "1"
+      "profileId": "3"
     },
     {
       "id": "2",
@@ -898,6 +919,20 @@
       "feedback": "Хорошая статья",
       "userId": "1",
       "profileId": "2"
+    },
+    {
+      "userId": "1",
+      "profileId": "4",
+      "rate": 4,
+      "feedback": "test",
+      "id": "8OgKAQZ"
+    },
+    {
+      "userId": "2",
+      "profileId": "1",
+      "rate": 4,
+      "feedback": "testtest",
+      "id": "Cxz4H4h"
     }
   ]
 }

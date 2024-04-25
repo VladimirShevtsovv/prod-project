@@ -5,7 +5,7 @@ import { Text, TextSize, TextTheme } from './Text';
 import { Theme } from '@/shared/consts/theme';
 
 export default {
-    title: 'shared/Text',
+    title: 'shared/deprecated/Text',
     component: Text,
     argTypes: {
         backgroundColor: { control: 'color' },

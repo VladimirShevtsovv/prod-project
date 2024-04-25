@@ -4,6 +4,8 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Sidebar } from './Sidebar';
 import { Theme } from '@/shared/consts/theme';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
+import cls from './Sidebar.module.scss';
 
 export default {
     title: 'widgets/Sidebar',
@@ -17,9 +19,9 @@ const Template: ComponentStory<typeof Sidebar> = (args) => (
     <Sidebar {...args} />
 );
 
-export const Light = Template.bind({});
-Light.args = {};
-Light.decorators = [
+export const Default = Template.bind({});
+Default.args = {};
+Default.decorators = [
     StoreDecorator({
         user: { authData: {} },
     }),
@@ -37,6 +39,36 @@ Dark.decorators = [
 export const NoAuth = Template.bind({});
 NoAuth.args = {};
 NoAuth.decorators = [
+    StoreDecorator({
+        user: {},
+    }),
+];
+
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.args = {
+    className: cls.SidebarRedesigned,
+};
+DefaultRedesigned.decorators = [
+    NewDesignDecorator,
+    StoreDecorator({
+        user: { authData: {} },
+    }),
+];
+
+export const DarkRedesigned = Template.bind({});
+DarkRedesigned.args = {};
+DarkRedesigned.decorators = [
+    ThemeDecorator(Theme.DARK),
+    NewDesignDecorator,
+    StoreDecorator({
+        user: { authData: {} },
+    }),
+];
+
+export const NoAuthRedesigned = Template.bind({});
+NoAuthRedesigned.args = {};
+NoAuthRedesigned.decorators = [
+    NewDesignDecorator,
     StoreDecorator({
         user: {},
     }),

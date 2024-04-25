@@ -6,7 +6,7 @@ import { Skeleton } from './Skeleton';
 import { Theme } from '@/shared/consts/theme';
 
 export default {
-    title: 'shared/Skeleton',
+    title: 'shared/deprecated/Skeleton',
     component: Skeleton,
     argTypes: {
         backgroundColor: { control: 'color' },

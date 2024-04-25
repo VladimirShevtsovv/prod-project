@@ -27,7 +27,6 @@
     color: var(--hint-redesigned);
 }
 
-
 .clear {
     padding: 0;
     border: none;
@@ -65,6 +64,9 @@
 
 .square {
     padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .square.m {

@@ -5,6 +5,7 @@ import { ThemeDecorator } from '@/shared/config/storybook/ThemeDecorator/ThemeDe
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
 import { Navbar } from './Navbar';
 import { Theme } from '@/shared/consts/theme';
+import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 
 export default {
     title: 'widgets/Navbar',
@@ -16,9 +17,13 @@ export default {
 
 const Template: ComponentStory<typeof Navbar> = (args) => <Navbar {...args} />;
 
-export const Light = Template.bind({});
-Light.args = {};
-Light.decorators = [StoreDecorator({})];
+export const Default = Template.bind({});
+Default.args = {};
+Default.decorators = [StoreDecorator({})];
+
+export const DefaultRedesigned = Template.bind({});
+DefaultRedesigned.args = {};
+DefaultRedesigned.decorators = [StoreDecorator({}), NewDesignDecorator];
 export const Dark = Template.bind({});
 Dark.args = {};
 Dark.decorators = [ThemeDecorator(Theme.DARK), StoreDecorator({})];
@@ -29,4 +34,13 @@ AuthNavbar.decorators = [
     StoreDecorator({
         user: { authData: {} },
     }),
+];
+
+export const AuthNavbarRedesigned = Template.bind({});
+AuthNavbarRedesigned.args = {};
+AuthNavbarRedesigned.decorators = [
+    StoreDecorator({
+        user: { authData: {} },
+    }),
+    NewDesignDecorator,
 ];
