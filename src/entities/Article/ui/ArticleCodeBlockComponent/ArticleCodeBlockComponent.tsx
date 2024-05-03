@@ -6,7 +6,7 @@ import cls from './ArticleCodeBlockComponent.module.scss';
 import { ArticleCodeBlock } from '../../model/types/article';
 import { Code } from '@/shared/ui/redesigned/Code';
 
-interface ArticleCodeBlockComponentProps {
+export interface ArticleCodeBlockComponentProps {
     className?: string;
     block: ArticleCodeBlock;
 }

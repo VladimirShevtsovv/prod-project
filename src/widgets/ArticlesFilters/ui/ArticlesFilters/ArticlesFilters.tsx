@@ -11,6 +11,7 @@ import { SortOrder } from '@/shared/types/sort';
 import { Input } from '@/shared/ui/redesigned/Input';
 import { Icon } from '@/shared/ui/redesigned/Icon';
 import SearchIcon from '@/shared/assetes/icons/search.svg';
+import { CreateArticleButton } from '../CreateArticleButton/CreateArticleButton';
 
 interface ArticlesFiltersProps {
     className?: string;
@@ -61,6 +62,7 @@ export const ArticlesFilters = memo((props: ArticlesFiltersProps) => {
                     onChangeOrder={onChangeOrder}
                     onChangeSort={onChangeSort}
                 />
+                <CreateArticleButton />
             </VStack>
         </Card>
     );

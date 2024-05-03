@@ -39,3 +39,17 @@ export interface Article {
     type: ArticleType[];
     blocks: ArticleBlock[];
 }
+
+export interface CreateNewArticle {
+    title?: string;
+    subtitle?: string;
+    img?: string;
+    typeOfNewArticle?: ArticleType;
+    newBlockType?: ArticleBlockType;
+    newBlocks?: ArticleBlock[];
+}
+
+export interface CreateNewArticleDescriptionBlock {
+    id?: string;
+    value?: ArticleBlockType;
+}

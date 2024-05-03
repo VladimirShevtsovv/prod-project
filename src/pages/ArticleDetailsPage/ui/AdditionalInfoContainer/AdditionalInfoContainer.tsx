@@ -9,7 +9,6 @@ import { getRouteArticleEdit } from '@/shared/consts/router';
 
 export const AdditionalInfoContainer = memo(() => {
     const article = useSelector(getArticleDetailsData);
-
     const navigate = useNavigate();
 
     const onEditArticle = useCallback(() => {

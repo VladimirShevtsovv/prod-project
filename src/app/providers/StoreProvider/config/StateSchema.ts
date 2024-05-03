@@ -16,6 +16,7 @@ import { ArticlesPageSchema } from '@/pages/ArticlePage';
 import { UISchema } from '@/features/UI';
 import { rtkApi } from '@/shared/api/rtkApi';
 import { ProfileSchema } from '@/features/editableProfileCard';
+import { CreateNewArticleSchema } from '@/features/CreateNewPage';
 
 export interface StateSchema {
     counter: CounterSchema;
@@ -30,6 +31,7 @@ export interface StateSchema {
     addCommentForm?: AddCommentFormSchema;
     articlesPage?: ArticlesPageSchema;
     articleDetailsPage?: ArticleDetailsPageSchema;
+    createNewArticlePage?: CreateNewArticleSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

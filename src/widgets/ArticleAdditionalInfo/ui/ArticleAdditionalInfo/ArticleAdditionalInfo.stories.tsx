@@ -1,7 +1,10 @@
 import React from 'react';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { StoreDecorator } from '@/shared/config/storybook/StoreDecorator/StoreDecorator';
-import { ArticleAdditionalInfo } from './ArticleAdditionalInfo';
+import {
+    ArticleAdditionalInfo,
+    ArticleAdditionalInfoProps,
+} from './ArticleAdditionalInfo';
 import { NewDesignDecorator } from '@/shared/config/storybook/NewDesignDecorator/NewDesignDecorator';
 import { I18Decorator } from '@/shared/config/storybook/I18Decorator/I18Decorator';
 import { Card } from '@/shared/ui/redesigned/Card';
@@ -21,7 +24,7 @@ const Template: ComponentStory<typeof ArticleAdditionalInfo> = (args) => (
     </Card>
 );
 
-const args = {
+const args: ArticleAdditionalInfoProps = {
     author: {
         id: '123',
         username: 'test',
@@ -29,7 +32,7 @@ const args = {
     },
     createdAt: '12.12.2012',
     views: 100,
-    onEdit: undefined,
+    onEdit: () => {},
 };
 
 export const Default = Template.bind({});

@@ -1,13 +1,14 @@
 import { memo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
-import { User } from '@/entities/User';
+import { isUserAdmin, User } from '@/entities/User';
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Avatar } from '@/shared/ui/redesigned/Avatar';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { Button } from '@/shared/ui/redesigned/Button';
 
-interface ArticleAdditionalInfoProps {
+export interface ArticleAdditionalInfoProps {
     className?: string;
     author: User;
     createdAt: string;
@@ -19,6 +20,7 @@ export const ArticleAdditionalInfo = memo(
     (props: ArticleAdditionalInfoProps) => {
         const { className, author, createdAt, views, onEdit } = props;
         const { t } = useTranslation();
+        const isAdmin = useSelector(isUserAdmin);
 
         return (
             <VStack gap="32" className={classNames('', {}, [className])}>
@@ -27,7 +29,9 @@ export const ArticleAdditionalInfo = memo(
                     <Text text={author.username} bold />
                     <Text text={createdAt} />
                 </HStack>
-                <Button onClick={onEdit}>{t('Редактировать')}</Button>
+                {isAdmin && (
+                    <Button onClick={onEdit}>{t('Редактировать')}</Button>
+                )}
                 <Text text={t('{{count}} просмотров', { count: views })} />
             </VStack>
         );

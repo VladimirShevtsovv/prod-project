@@ -7,7 +7,7 @@ import cls from './ArticleTextBlockComponent.module.scss';
 import { ArticleTextBlock } from '../../model/types/article';
 import { ToggleFeatures } from '@/shared/lib/features';
 
-interface ArticleTextBlockComponentProps {
+export interface ArticleTextBlockComponentProps {
     className?: string;
     block: ArticleTextBlock;
 }

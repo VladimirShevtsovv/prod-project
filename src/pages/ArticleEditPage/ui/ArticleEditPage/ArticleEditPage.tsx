@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import cls from './ArticleEditPage.module.scss';
 import { Page } from '@/widgets/Page';
+import { StickyContentLayout } from '@/shared/layouts/StickyContentLayout';
+import { CreteNewArticlePage } from '@/features/CreateNewPage';
 
 interface ArticleEditPageProps {
     className?: string;
@@ -16,11 +18,19 @@ const ArticleEditPage = memo((props: ArticleEditPageProps) => {
     const isEdit = Boolean(id);
 
     return (
-        <Page className={classNames(cls.ArticleEditPage, {}, [className])}>
-            {isEdit
-                ? t('Редактирование статьи с ID = ') + id
-                : t('Создание новой статьи')}
-        </Page>
+        <StickyContentLayout
+            content={
+                <Page
+                    className={classNames(cls.ArticleEditPage, {}, [className])}
+                >
+                    {isEdit ? (
+                        t('Редактирование статьи с ID = ') + id
+                    ) : (
+                        <CreteNewArticlePage />
+                    )}
+                </Page>
+            }
+        />
     );
 });
 
