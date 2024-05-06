@@ -7,6 +7,9 @@ export const getCreateNewArticlePageIsLoading = (state: StateSchema) =>
 
 export const getCreateNewArticlePageError = (state: StateSchema) =>
     state.createNewArticlePage?.error;
+
+export const getCreateNewArticlePageValidateErrors = (state: StateSchema) =>
+    state.createNewArticlePage?.validateErrors;
 export const getCreateNewArticlePageNewBlockType = (state: StateSchema) =>
     state.createNewArticlePage?.data?.newBlockType;
 

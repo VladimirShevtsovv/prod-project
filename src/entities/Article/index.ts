@@ -4,6 +4,9 @@ export type {
     CreateNewArticle,
     ArticleBlock,
     CreateNewArticleDescriptionBlock,
+    ArticleCodeBlock,
+    ArticleImageBlock,
+    ArticleTextBlock,
 } from './model/types/article';
 export type { ArticleDetailsSchema } from './model/types/articleDetailsSchema';
 export { ArticleList } from './ui/ArticleList/ArticleList';
@@ -14,4 +17,3 @@ export {
     ArticleType,
     ArticleBlockType,
 } from './model/consts/consts';
-export { CreateNewArticleForm } from './ui/CreateNewArticleForm/CreateNewArticleForm';

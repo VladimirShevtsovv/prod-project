@@ -2,10 +2,16 @@ import { useTranslation } from 'react-i18next';
 import { memo } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Input } from '@/shared/ui/redesigned/Input';
-import { ArticleBlock, CreateNewArticle } from '../../model/types/article';
-import { ArticleBlockType, ArticleType } from '../../model/consts/consts';
+
 import { CreateNewArticleSelector } from '../CreateNewArticleSelector/CreateNewArticleSelector';
 import { CreateNewBlockTabsSelector } from '../CreateNewBlockTabsSelector/CreateNewBlockTabsSelector';
+import {
+    ArticleBlock,
+    ArticleBlockType,
+    ArticleType,
+    CreateNewArticle,
+} from '@/entities/Article';
+import { Button } from '@/shared/ui/redesigned/Button';
 
 interface CreateNewArticleFormProps {
     data?: CreateNewArticle;
@@ -16,6 +22,7 @@ interface CreateNewArticleFormProps {
     onChangeArticleType?: (value: ArticleType) => void;
     onChangeNewBlockType: (value: ArticleBlockType) => void;
     onCreateNewBlock: (data: ArticleBlock[]) => void;
+    onSaveNewArticle?: () => void;
 }
 
 export const CreateNewArticleForm = memo((props: CreateNewArticleFormProps) => {
@@ -28,6 +35,7 @@ export const CreateNewArticleForm = memo((props: CreateNewArticleFormProps) => {
         onChangeArticleType,
         onChangeNewBlockType,
         onCreateNewBlock,
+        onSaveNewArticle,
     } = props;
     const { t } = useTranslation();
 
@@ -36,14 +44,17 @@ export const CreateNewArticleForm = memo((props: CreateNewArticleFormProps) => {
             <Input
                 label={t('Название статьи')}
                 onChange={onChangeArticleTitle}
+                value={data?.title || ''}
             />
             <Input
                 label={t('Подзаголовок статьи')}
                 onChange={onChangeArticleSubtitle}
+                value={data?.subtitle || ''}
             />
             <Input
                 label={t('Основная картинка статьи (URL)')}
                 onChange={onChangeArticleImageUrl}
+                value={data?.img || ''}
             />
             <CreateNewArticleSelector
                 value={data?.typeOfNewArticle}
@@ -51,11 +62,13 @@ export const CreateNewArticleForm = memo((props: CreateNewArticleFormProps) => {
             />
             <CreateNewBlockTabsSelector
                 blocks={data?.newBlocks}
-                value={data?.newBlockType}
+                newBlockType={data?.newBlockType}
                 onCreate={onCreateNewBlock}
                 onChange={onChangeNewBlockType}
             />
-            {/* <Textarea size="l" label={t('Описание статьи')} /> */}
+            <Button onClick={onSaveNewArticle}>
+                {t('Создать новую статью')}
+            </Button>
         </div>
     );
 });

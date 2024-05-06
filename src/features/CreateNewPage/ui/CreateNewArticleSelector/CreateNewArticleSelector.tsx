@@ -4,7 +4,7 @@ import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Text } from '@/shared/ui/redesigned/Text';
 import { HStack } from '@/shared/ui/redesigned/Stack';
 import { TabItem } from '@/shared/ui/deprecated/Tabs';
-import { ArticleType } from '../../model/consts/consts';
+import { ArticleType } from '@/entities/Article';
 
 interface NewArticleTypeSelectorProps {
     className?: string;

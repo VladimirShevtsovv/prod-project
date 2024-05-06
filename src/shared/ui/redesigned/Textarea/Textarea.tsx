@@ -10,13 +10,14 @@ type HTMLTextAreaProps = Omit<
     'value' | 'onChange' | 'size'
 >;
 
-type TextAreaSize = 's' | 'm' | 'l';
+type TextAreaSize = 's' | 'm' | 'l' | 'xl';
 interface TextareaProps extends HTMLTextAreaProps {
     className?: string;
     size?: TextAreaSize;
     value?: string | number;
     label?: string;
     onChange?: (value: string) => void;
+    onBlurHandler?: (value: string) => void;
 }
 
 export const Textarea = memo((props: TextareaProps) => {
@@ -26,6 +27,7 @@ export const Textarea = memo((props: TextareaProps) => {
         value,
         label,
         onChange,
+        onBlurHandler,
         placeholder,
         ...otherProps
     } = props;
@@ -35,7 +37,8 @@ export const Textarea = memo((props: TextareaProps) => {
     const onChangeHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         onChange?.(e.target.value);
     };
-    const onBlur = () => {
+    const onBlur = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        onBlurHandler?.(e.target.value);
         setIsFocused(false);
     };
 

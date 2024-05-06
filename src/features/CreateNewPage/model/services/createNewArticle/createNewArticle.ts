@@ -1,0 +1,52 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { ThunkConfig } from '@/app/providers/StoreProvider';
+import { ValidateNewArticleError } from '../../consts/consts';
+import { getCreateNewArticlePageData } from '../../selectors/createNewArticlePageSelectors';
+import { validateNewArticleData } from '../validateNewArticleData/validateNewArticleData';
+import { Article } from '@/entities/Article';
+import { getUserAuthData } from '@/entities/User';
+
+function getFormattedDate(): string {
+    const date = new Date();
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    const formattedDay = day < 10 ? `0${day}` : day;
+    const formattedMonth = month < 10 ? `0${month}` : month;
+
+    return `${formattedDay}.${formattedMonth}.${year}`;
+}
+export const createNewArticle = createAsyncThunk<
+    Article,
+    void,
+    ThunkConfig<(ValidateNewArticleError | string)[]>
+>('profile/updateProfileData', async (_, thunkApi) => {
+    const { extra, dispatch, rejectWithValue, getState } = thunkApi;
+    const user = getUserAuthData(getState());
+    const newArticleData = getCreateNewArticlePageData(getState());
+
+    const errors = validateNewArticleData(newArticleData);
+    if (errors.length) return rejectWithValue(errors);
+
+    try {
+        const response = await extra.api.post<Article>(`/articles`, {
+            title: newArticleData?.title,
+            subtitle: newArticleData?.subtitle,
+            img: newArticleData?.img,
+            views: 0,
+            createdAt: getFormattedDate(),
+            userId: user?.id,
+            type: [newArticleData?.typeOfNewArticle],
+            blocks: newArticleData?.newBlocks,
+        });
+
+        if (!response.data) {
+            throw new Error();
+        }
+        window.location.href = `/articles/${response.data.id}`;
+        return response.data;
+    } catch (e) {
+        console.log(e);
+        return rejectWithValue([ValidateNewArticleError.SERVER_ERROR]);
+    }
+});

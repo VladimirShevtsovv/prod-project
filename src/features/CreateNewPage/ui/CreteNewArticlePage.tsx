@@ -16,9 +16,15 @@ import {
     ArticleBlock,
     ArticleBlockType,
     ArticleType,
-    CreateNewArticleForm,
 } from '@/entities/Article';
-import { getCreateNewArticlePageData } from '../model/selectors/createNewArticlePageSelectors';
+import {
+    getCreateNewArticlePageData,
+    getCreateNewArticlePageValidateErrors,
+} from '../model/selectors/createNewArticlePageSelectors';
+import { CreateNewArticleForm } from './CreateNewArticleForm/CreateNewArticleForm';
+
+import { Text } from '@/shared/ui/redesigned/Text';
+import { createNewArticle } from '../model/services/createNewArticle/createNewArticle';
 
 interface CreteNewArticlePageProps {
     className?: string;
@@ -33,7 +39,7 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const createNewArticleData = useSelector(getCreateNewArticlePageData);
-
+    const validateErrors = useSelector(getCreateNewArticlePageValidateErrors);
     const onChangeArticleTitle = useCallback(
         (value?: string) => {
             dispatch(
@@ -100,10 +106,18 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
         [dispatch],
     );
 
+    const onSaveNewArtilce = useCallback(() => {
+        dispatch(createNewArticle());
+    }, [dispatch]);
+
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
             <VStack className={classNames('', {}, [className])}>
                 {t('Создание новой статьи')}
+                {validateErrors?.length &&
+                    validateErrors.map((err) => (
+                        <Text key={err} variant="error" text={err} />
+                    ))}
                 <CreateNewArticleForm
                     data={createNewArticleData}
                     onChangeArticleTitle={onChangeArticleTitle}
@@ -112,6 +126,7 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
                     onChangeArticleType={changeNewArticleType}
                     onChangeNewBlockType={onChangeNewBlockType}
                     onCreateNewBlock={createNewBlockHandler}
+                    onSaveNewArticle={onSaveNewArtilce}
                 />
             </VStack>
         </DynamicModuleLoader>

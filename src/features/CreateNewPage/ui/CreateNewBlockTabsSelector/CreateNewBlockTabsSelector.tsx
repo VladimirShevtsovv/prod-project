@@ -1,17 +1,17 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo, useState } from 'react';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import { Tabs } from '@/shared/ui/redesigned/Tabs';
 import { TabItem } from '@/shared/ui/deprecated/Tabs';
-import { ArticleBlock } from '../../model/types/article';
-import { ArticleBlockType } from '../../model/consts/consts';
 
 import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { Button } from '@/shared/ui/redesigned/Button';
+import { renderNewBlock } from './renderNewBlock';
+import { ArticleBlock, ArticleBlockType } from '@/entities/Article';
 
 interface CreateNewBlockTabsProps {
     className?: string;
-    value?: ArticleBlockType;
+    newBlockType?: ArticleBlockType;
     onChange: (type: ArticleBlockType) => void;
     onCreate: (data: ArticleBlock[]) => void;
     blocks?: ArticleBlock[];
@@ -23,11 +23,12 @@ export const CreateNewBlockTabsSelector = memo(
             className,
             onChange,
             onCreate,
-            value = ArticleBlockType.TEXT,
-            blocks,
+            newBlockType = ArticleBlockType.TEXT,
+            blocks = [],
         } = props;
 
         const { t } = useTranslation();
+        const [newBlockId, setNewBlockId] = useState(0);
 
         const newBlockTypes = useMemo<TabItem[]>(
             () => [
@@ -54,30 +55,26 @@ export const CreateNewBlockTabsSelector = memo(
             [onChange],
         );
 
+        const createBlock = useCallback(
+            (type: ArticleBlockType, id: string): ArticleBlock => {
+                switch (type) {
+                    case ArticleBlockType.CODE:
+                        return { id, code: '', type };
+                    case ArticleBlockType.IMAGE:
+                        return { id, src: '', title: '', type };
+                    case ArticleBlockType.TEXT:
+                    default:
+                        return { id, paragraphs: [], title: '', type };
+                }
+            },
+            [],
+        );
+
         const onCreateHandler = useCallback(() => {
-            let data: ArticleBlock;
-            const newBlocks = blocks || [];
-            const id = String(newBlocks.length);
-            switch (value) {
-                case ArticleBlockType.CODE:
-                    data = { id, code: '', type: value };
-                    break;
-                case ArticleBlockType.IMAGE:
-                    data = { id, src: '', title: '', type: value };
-                    break;
-                case ArticleBlockType.TEXT:
-                    data = { id, paragraphs: [], title: '', type: value };
-                    break;
-                default:
-                    data = {
-                        id,
-                        paragraphs: [],
-                        title: '',
-                        type: ArticleBlockType.TEXT,
-                    };
-            }
-            onCreate([...newBlocks, data]);
-        }, [blocks, onCreate, value]);
+            const newBlock = createBlock(newBlockType, String(newBlockId));
+            setNewBlockId((prev) => prev + 1);
+            onCreate([...blocks, newBlock]);
+        }, [createBlock, blocks, newBlockId, onCreate, newBlockType]);
 
         return (
             <VStack>
@@ -85,23 +82,15 @@ export const CreateNewBlockTabsSelector = memo(
                     <Tabs
                         direction="row"
                         tabs={newBlockTypes}
-                        value={value}
+                        value={newBlockType}
                         onTabClick={onTabClick}
                         className={classNames('', {}, [className])}
                     />
-                    <Button onClick={() => onCreateHandler()}>
+                    <Button onClick={onCreateHandler}>
                         {t('Добавить блок')}
                     </Button>
                 </HStack>
-                {blocks?.map((block) => {
-                    const { id, type } = block;
-                    return (
-                        <div>
-                            {id}
-                            {type}
-                        </div>
-                    );
-                })}
+                {blocks?.map(renderNewBlock)}
             </VStack>
         );
     },
