@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import {
     DynamicModuleLoader,
@@ -31,6 +31,9 @@ import { AppImage } from '@/shared/ui/redesigned/AppImage';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { Skeleton } from '@/shared/ui/redesigned/Skeleton';
 import { ArticleDetailsSkeletons } from './ArticleDetailsSkeletons';
+import { isUserAdmin } from '@/entities/User';
+import { Button } from '@/shared/ui/redesigned/Button';
+import { deleteArticle } from '../../model/services/deleteArticle/deleteArticle';
 
 interface ArticleDetailsProps {
     className?: string;
@@ -69,8 +72,19 @@ const Deprecated = () => {
     );
 };
 
-const Redesigned = () => {
+const Redesigned = (props: ArticleDetailsProps) => {
+    const { id, className } = props;
     const article = useSelector(getArticleDetailsData);
+    const isAdmin = useSelector(isUserAdmin);
+    const { t } = useTranslation();
+    const dispatch = useAppDispatch();
+
+    const deleteArticleHandler = useCallback(() => {
+        if (id) {
+            console.log(id);
+            dispatch(deleteArticle(id));
+        }
+    }, [dispatch, id]);
 
     return (
         <>
@@ -82,6 +96,11 @@ const Redesigned = () => {
                 className={cls.img}
             />
             {article?.blocks.map(renderArticleBlock)}
+            {isAdmin && (
+                <Button onClick={deleteArticleHandler}>
+                    {t('Удалить статью')}
+                </Button>
+            )}
         </>
     );
 };
@@ -114,7 +133,7 @@ export const ArticleDetails = memo((props: ArticleDetailsProps) => {
         content = (
             <ToggleFeatures
                 feature="isAppRedesigned"
-                on={<Redesigned />}
+                on={<Redesigned {...props} />}
                 off={<Deprecated />}
             />
         );

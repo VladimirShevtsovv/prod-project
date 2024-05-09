@@ -7,6 +7,7 @@ import { ArticleTextBlock } from '@/entities/Article';
 import { Flex } from '@/shared/ui/redesigned/Stack/Flex/Flex';
 import { createNewArticleActions } from '../../../model/slice/CreteNewArticlePageSlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 interface ArticleNewTextBlockComponentProps {
     className?: string;
@@ -65,6 +66,7 @@ export const ArticleNewTextBlockComponent = memo(
                 max
                 className={classNames('', {}, [className])}
             >
+                <Text text={t('Дполниельный текстовый блок')} />
                 <Input onChange={onChangeTitle} value={block.title} />
                 <Textarea
                     onBlurHandler={onBlur}

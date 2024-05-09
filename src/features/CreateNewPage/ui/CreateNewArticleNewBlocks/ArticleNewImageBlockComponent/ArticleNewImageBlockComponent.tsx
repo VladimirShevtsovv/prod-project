@@ -6,6 +6,7 @@ import { ArticleImageBlock } from '@/entities/Article';
 import { Flex } from '@/shared/ui/redesigned/Stack/Flex/Flex';
 import { createNewArticleActions } from '../../../model/slice/CreteNewArticlePageSlice';
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 interface ArticleNewImageBlockComponentProps {
     className?: string;
@@ -48,6 +49,7 @@ export const ArticleNewImageBlockComponent = memo(
                 max
                 className={classNames('', {}, [className])}
             >
+                <Text text={t('Дполниельный блок-картинка')} />
                 <Input onChange={onChangeTitle} value={block.title} />
                 <Input onChange={onChangeSrc} value={block.src} />
             </Flex>

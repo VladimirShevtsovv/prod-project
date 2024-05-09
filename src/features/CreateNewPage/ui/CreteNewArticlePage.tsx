@@ -25,6 +25,7 @@ import { CreateNewArticleForm } from './CreateNewArticleForm/CreateNewArticleFor
 
 import { Text } from '@/shared/ui/redesigned/Text';
 import { createNewArticle } from '../model/services/createNewArticle/createNewArticle';
+import { ValidateNewArticleError } from '../model/consts/consts';
 
 interface CreteNewArticlePageProps {
     className?: string;
@@ -40,6 +41,42 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
     const dispatch = useAppDispatch();
     const createNewArticleData = useSelector(getCreateNewArticlePageData);
     const validateErrors = useSelector(getCreateNewArticlePageValidateErrors);
+
+    const validateErrorTranslates = {
+        [ValidateNewArticleError.SERVER_ERROR]: t(
+            'Серверная ошибка при сохранении',
+        ),
+        [ValidateNewArticleError.NO_DATA]: t('Данные не указаны'),
+        [ValidateNewArticleError.INCORRECT_TITLE]: t('Некорректный заголовок'),
+        [ValidateNewArticleError.INCORRECT_SUBTITLE]: t(
+            'Некорректный подзаголовок',
+        ),
+        [ValidateNewArticleError.INCORRECT_IMG_URL_EMPTY]: t(
+            'Не введен url основной картинки',
+        ),
+        [ValidateNewArticleError.INCORRECT_IMG_URL_INVALID]: t(
+            'Введен url несущесвующей или недоступной картинки',
+        ),
+        [ValidateNewArticleError.INCORRECT_NEW_BLOCKS_LENGTH]: t(
+            'Добавьте хотя бы один дополнительный блок',
+        ),
+        [ValidateNewArticleError.INCORRECT_NEW_TEXT_BLOCK]: t(
+            'Не все дополниетльные тектовые блоки заполенны',
+        ),
+        [ValidateNewArticleError.INCORRECT_NEW_CODE_BLOCK]: t(
+            'Не все дополниетльные блоки с кодом заполенны',
+        ),
+        [ValidateNewArticleError.INCORRECT_NEW_IMAGE_BLOCK_TITLE]: t(
+            'Не во всех дополниетльных блоках-картинках заполенны заголовки',
+        ),
+        [ValidateNewArticleError.INCORRECT_IMG_URL_SRC_EMPTY]: t(
+            'Не во всех дополниетльных блоках-картинках заполенны url на картинку',
+        ),
+        [ValidateNewArticleError.INCORRECT_IMG_URL_SRC_INVALID]: t(
+            'В одном из дополнительных блоках-картинках введен невалидный url',
+        ),
+    };
+
     const onChangeArticleTitle = useCallback(
         (value?: string) => {
             dispatch(
@@ -106,7 +143,7 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
         [dispatch],
     );
 
-    const onSaveNewArtilce = useCallback(() => {
+    const onSaveNewArticle = useCallback(() => {
         dispatch(createNewArticle());
     }, [dispatch]);
 
@@ -116,7 +153,11 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
                 {t('Создание новой статьи')}
                 {validateErrors?.length &&
                     validateErrors.map((err) => (
-                        <Text key={err} variant="error" text={err} />
+                        <Text
+                            key={err}
+                            variant="error"
+                            text={validateErrorTranslates[err]}
+                        />
                     ))}
                 <CreateNewArticleForm
                     data={createNewArticleData}
@@ -126,7 +167,7 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
                     onChangeArticleType={changeNewArticleType}
                     onChangeNewBlockType={onChangeNewBlockType}
                     onCreateNewBlock={createNewBlockHandler}
-                    onSaveNewArticle={onSaveNewArtilce}
+                    onSaveNewArticle={onSaveNewArticle}
                 />
             </VStack>
         </DynamicModuleLoader>

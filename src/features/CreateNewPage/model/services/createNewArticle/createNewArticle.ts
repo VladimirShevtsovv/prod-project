@@ -19,13 +19,13 @@ function getFormattedDate(): string {
 export const createNewArticle = createAsyncThunk<
     Article,
     void,
-    ThunkConfig<(ValidateNewArticleError | string)[]>
+    ThunkConfig<ValidateNewArticleError[]>
 >('profile/updateProfileData', async (_, thunkApi) => {
-    const { extra, dispatch, rejectWithValue, getState } = thunkApi;
+    const { extra, rejectWithValue, getState } = thunkApi;
     const user = getUserAuthData(getState());
     const newArticleData = getCreateNewArticlePageData(getState());
 
-    const errors = validateNewArticleData(newArticleData);
+    const errors = await validateNewArticleData(newArticleData);
     if (errors.length) return rejectWithValue(errors);
 
     try {

@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ArticleDetailsSchema } from '../types/articleDetailsSchema';
 import { fetchArticleById } from '../services/fetchArticleById/fetchArticleById';
 import { Article } from '../types/article';
+import { deleteArticle } from '../services/deleteArticle/deleteArticle';
 
 const initialState: ArticleDetailsSchema = {
     isLoading: false,
@@ -29,6 +30,15 @@ export const articleDetailsSlice = createSlice({
             .addCase(fetchArticleById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = action.payload;
+            })
+            .addCase(deleteArticle.pending, (state) => {
+                console.log('Удаляем статью');
+            })
+            .addCase(deleteArticle.fulfilled, (state) => {
+                console.log('Статья удалена');
+            })
+            .addCase(deleteArticle.rejected, (state) => {
+                console.log('Не удалось удалить статью');
             });
     },
 });

@@ -6,6 +6,7 @@ import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch';
 import { ArticleCodeBlock } from '@/entities/Article';
 import { createNewArticleActions } from '../../../model/slice/CreteNewArticlePageSlice';
 import { Flex } from '@/shared/ui/redesigned/Stack/Flex/Flex';
+import { Text } from '@/shared/ui/redesigned/Text';
 
 interface ArticleNewCodeBlockComponentProps {
     className?: string;
@@ -36,6 +37,7 @@ export const ArticleNewCodeBlockComponent = memo(
                 max
                 className={classNames('', {}, [className])}
             >
+                <Text text={t('Дполниельный блок с кодом')} />
                 <Textarea
                     size="xl"
                     onChange={onChangeCode}
