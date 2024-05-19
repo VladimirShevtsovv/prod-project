@@ -23,6 +23,7 @@ interface CreateNewArticleFormProps {
     onChangeNewBlockType: (value: ArticleBlockType) => void;
     onCreateNewBlock: (data: ArticleBlock[]) => void;
     onSaveNewArticle?: () => void;
+    onAddTypeOfArticleSelector?: () => void;
 }
 
 export const CreateNewArticleForm = memo((props: CreateNewArticleFormProps) => {
@@ -36,6 +37,7 @@ export const CreateNewArticleForm = memo((props: CreateNewArticleFormProps) => {
         onChangeNewBlockType,
         onCreateNewBlock,
         onSaveNewArticle,
+        onAddTypeOfArticleSelector,
     } = props;
     const { t } = useTranslation();
 
@@ -59,9 +61,10 @@ export const CreateNewArticleForm = memo((props: CreateNewArticleFormProps) => {
             <CreateNewArticleSelector
                 value={data?.typeOfNewArticle}
                 onChange={onChangeArticleType}
+                onAddTypeOfArticleSelector={onAddTypeOfArticleSelector}
             />
             <CreateNewBlockTabsSelector
-                blocks={data?.newBlocks}
+                blocks={data?.blocks}
                 newBlockType={data?.newBlockType}
                 onCreate={onCreateNewBlock}
                 onChange={onChangeNewBlockType}

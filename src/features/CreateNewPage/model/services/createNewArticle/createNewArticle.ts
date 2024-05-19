@@ -36,8 +36,8 @@ export const createNewArticle = createAsyncThunk<
             views: 0,
             createdAt: getFormattedDate(),
             userId: user?.id,
-            type: [newArticleData?.typeOfNewArticle],
-            blocks: newArticleData?.newBlocks,
+            type: [newArticleData?.type?.[0]],
+            blocks: newArticleData?.blocks,
         });
 
         if (!response.data) {

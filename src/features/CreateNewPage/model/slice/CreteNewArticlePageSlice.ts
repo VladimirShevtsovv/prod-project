@@ -13,9 +13,9 @@ const initialState: CreateNewArticleSchema = {
     isLoading: false,
     error: undefined,
     data: {
-        typeOfNewArticle: ArticleType.ALL,
+        type: [ArticleType.ALL],
         newBlockType: ArticleBlockType.TEXT,
-        newBlocks: [],
+        blocks: [],
     },
     validateErrors: [],
 };
@@ -41,10 +41,10 @@ export const createNewArticleSlice = createSlice({
             state,
             action: PayloadAction<ArticleBlock>,
         ) => {
-            if (state.data.newBlocks) {
-                const paylodaId = action.payload.id;
-                state.data.newBlocks = state.data.newBlocks.map((newBlock) =>
-                    newBlock.id === paylodaId ? action.payload : newBlock,
+            if (state.data.blocks) {
+                const payloadId = action.payload.id;
+                state.data.blocks = state.data.blocks.map((newBlock) =>
+                    newBlock.id === payloadId ? action.payload : newBlock,
                 );
             }
         },
@@ -78,9 +78,9 @@ export const createNewArticleSlice = createSlice({
                     state.isLoading = false;
                     state.validateErrors = undefined;
                     state.data = {
-                        typeOfNewArticle: ArticleType.ALL,
+                        type: [ArticleType.ALL],
                         newBlockType: ArticleBlockType.TEXT,
-                        newBlocks: [],
+                        blocks: [],
                     };
                     state.validateErrors = [];
                 },

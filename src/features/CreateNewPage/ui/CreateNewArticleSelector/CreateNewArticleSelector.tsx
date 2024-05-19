@@ -1,21 +1,35 @@
 import { useTranslation } from 'react-i18next';
 import { memo, useCallback, useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { ListBox } from '@/shared/ui/redesigned/Popups';
 import { Text } from '@/shared/ui/redesigned/Text';
-import { HStack } from '@/shared/ui/redesigned/Stack';
+import { HStack, VStack } from '@/shared/ui/redesigned/Stack';
 import { TabItem } from '@/shared/ui/deprecated/Tabs';
 import { ArticleType } from '@/entities/Article';
+import { Button } from '@/shared/ui/redesigned/Button';
+import { getCreateNewArticlePageTypeOfNewArticle } from '../../model/selectors/createNewArticlePageSelectors';
 
 interface NewArticleTypeSelectorProps {
     className?: string;
     onChange?: (type: ArticleType) => void;
+    onAddTypeOfArticleSelector?: () => void;
     value?: ArticleType;
 }
 
 export const CreateNewArticleSelector = memo(
     (props: NewArticleTypeSelectorProps) => {
-        const { className, onChange, value = ArticleType.ALL } = props;
+        const {
+            className,
+            onChange,
+            value = ArticleType.ALL,
+            onAddTypeOfArticleSelector,
+        } = props;
         const { t } = useTranslation();
+
+        const selectedTypesOfArticle = useSelector(
+            getCreateNewArticlePageTypeOfNewArticle,
+        );
+        const isDisableButton = selectedTypesOfArticle?.includes(value);
 
         const onChangeHandler = useCallback(
             (value: string) => {
@@ -56,6 +70,18 @@ export const CreateNewArticleSelector = memo(
                     value={value}
                     className={className}
                 />
+                <Button
+                    disabled={isDisableButton}
+                    onClick={onAddTypeOfArticleSelector}
+                >
+                    {t('Доабвит тему')}
+                </Button>
+                <VStack>
+                    {selectedTypesOfArticle &&
+                        selectedTypesOfArticle.map((type) => (
+                            <div key={type}>{type}</div>
+                        ))}
+                </VStack>
             </HStack>
         );
     },

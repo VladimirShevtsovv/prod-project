@@ -14,7 +14,10 @@ export const getCreateNewArticlePageNewBlockType = (state: StateSchema) =>
     state.createNewArticlePage?.data?.newBlockType;
 
 export const getCreateNewArticlePageTypeOfNewArticle = (state: StateSchema) =>
+    state.createNewArticlePage?.data?.type;
+
+export const getCreateNewArticlePageTypesOfNewArticle = (state: StateSchema) =>
     state.createNewArticlePage?.data?.typeOfNewArticle;
 
 export const getCreateNewArticlePageNewBlocks = (state: StateSchema) =>
-    state.createNewArticlePage?.data?.newBlocks;
+    state.createNewArticlePage?.data?.blocks;

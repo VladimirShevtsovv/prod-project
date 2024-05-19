@@ -42,6 +42,29 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
     const createNewArticleData = useSelector(getCreateNewArticlePageData);
     const validateErrors = useSelector(getCreateNewArticlePageValidateErrors);
 
+    // const ArticleTest: Article = {
+    //     title: '123',
+    //     subtitle: '123',
+    //     img: '123',
+    //
+    //     type: [ArticleType.ALL],
+    //     blocks: [{ id: '12', code: '123', type: ArticleBlockType.CODE }],
+    //
+    //     id: '1',
+    //     user: {
+    //         id: '1',
+    //         username: '123',
+    //     },
+    //     views: 123,
+    //     createdAt: '123',
+    // };
+
+    // const CreateNewArticleTest: CreateNewArticle = {
+    //     ...ArticleTest,
+    //     newBlockType: ArticleBlockType.TEXT,
+    // };
+    // console.log(CreateNewArticleTest);
+
     const validateErrorTranslates = {
         [ValidateNewArticleError.SERVER_ERROR]: t(
             'Серверная ошибка при сохранении',
@@ -121,6 +144,26 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
         [dispatch],
     );
 
+    const onAddTypeOfArticleSelector = useCallback(() => {
+        const { type, typeOfNewArticle } = createNewArticleData || {};
+
+        let newType: ArticleType[];
+
+        if (type && typeOfNewArticle) {
+            newType = type.includes(typeOfNewArticle)
+                ? [...type]
+                : [...type, typeOfNewArticle];
+        } else {
+            newType = [ArticleType.ALL];
+        }
+
+        dispatch(
+            createNewArticleActions.updateNewArticleData({
+                type: newType,
+            }),
+        );
+    }, [createNewArticleData, dispatch]);
+
     const onChangeNewBlockType = useCallback(
         (value: ArticleBlockType) => {
             dispatch(
@@ -136,7 +179,7 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
         (data: ArticleBlock[]) => {
             dispatch(
                 createNewArticleActions.updateNewArticleData({
-                    newBlocks: data,
+                    blocks: data,
                 }),
             );
         },
@@ -168,6 +211,7 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
                     onChangeNewBlockType={onChangeNewBlockType}
                     onCreateNewBlock={createNewBlockHandler}
                     onSaveNewArticle={onSaveNewArticle}
+                    onAddTypeOfArticleSelector={onAddTypeOfArticleSelector}
                 />
             </VStack>
         </DynamicModuleLoader>

@@ -44,9 +44,15 @@ export interface CreateNewArticle {
     title?: string;
     subtitle?: string;
     img?: string;
-    typeOfNewArticle?: ArticleType;
+    type?: ArticleType[];
     newBlockType?: ArticleBlockType;
-    newBlocks?: ArticleBlock[];
+    blocks?: ArticleBlock[];
+    typeOfNewArticle?: ArticleType;
+
+    id?: string;
+    views?: number;
+    user?: User;
+    createdAt?: string;
 }
 
 export interface CreateNewArticleDescriptionBlock {

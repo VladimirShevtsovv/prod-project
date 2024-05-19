@@ -12,11 +12,18 @@ export const validateNewArticleData = async (
         return [ValidateNewArticleError.NO_DATA];
     }
 
-    const { title, newBlocks, img, subtitle } = newArticleData;
+    const { title, blocks, img, subtitle } = newArticleData;
     const errors: ValidateNewArticleError[] = [];
 
-    if (!title) errors.push(ValidateNewArticleError.INCORRECT_TITLE);
-    if (!subtitle) errors.push(ValidateNewArticleError.INCORRECT_SUBTITLE);
+    if (!title && !errors.includes(ValidateNewArticleError.INCORRECT_TITLE)) {
+        errors.push(ValidateNewArticleError.INCORRECT_TITLE);
+    }
+    if (
+        !subtitle &&
+        !errors.includes(ValidateNewArticleError.INCORRECT_SUBTITLE)
+    ) {
+        errors.push(ValidateNewArticleError.INCORRECT_SUBTITLE);
+    }
 
     function checkImageUrl(url: string) {
         return new Promise((resolve) => {
@@ -31,11 +38,17 @@ export const validateNewArticleData = async (
         });
     }
 
-    if (!img) {
+    if (
+        !img &&
+        !errors.includes(ValidateNewArticleError.INCORRECT_IMG_URL_EMPTY)
+    ) {
         errors.push(ValidateNewArticleError.INCORRECT_IMG_URL_EMPTY);
-    } else {
+    } else if (img) {
         const isValid = await checkImageUrl(img);
-        if (!isValid) {
+        if (
+            !isValid &&
+            !errors.includes(ValidateNewArticleError.INCORRECT_IMG_URL_INVALID)
+        ) {
             errors.push(ValidateNewArticleError.INCORRECT_IMG_URL_INVALID);
         }
     }
@@ -44,26 +57,46 @@ export const validateNewArticleData = async (
         const { type, id } = blockData;
         switch (type) {
             case ArticleBlockType.TEXT:
-                if (!blockData.paragraphs.length) {
+                if (
+                    !blockData.paragraphs.length &&
+                    !errors.includes(
+                        ValidateNewArticleError.INCORRECT_NEW_TEXT_BLOCK,
+                    )
+                ) {
                     errors.push(
                         ValidateNewArticleError.INCORRECT_NEW_TEXT_BLOCK,
                     );
                 }
                 break;
             case ArticleBlockType.CODE:
-                if (!blockData.code) {
+                if (
+                    !blockData.code &&
+                    !errors.includes(
+                        ValidateNewArticleError.INCORRECT_NEW_CODE_BLOCK,
+                    )
+                ) {
                     errors.push(
                         ValidateNewArticleError.INCORRECT_NEW_CODE_BLOCK,
                     );
                 }
                 break;
             case ArticleBlockType.IMAGE:
-                if (!blockData.src) {
+                if (
+                    !blockData.src &&
+                    !errors.includes(
+                        ValidateNewArticleError.INCORRECT_IMG_URL_SRC_EMPTY,
+                    )
+                ) {
                     errors.push(
                         ValidateNewArticleError.INCORRECT_IMG_URL_SRC_EMPTY,
                     );
                 }
-                if (!blockData.title) {
+                if (
+                    !blockData.title &&
+                    !errors.includes(
+                        ValidateNewArticleError.INCORRECT_NEW_IMAGE_BLOCK_TITLE,
+                    )
+                ) {
                     errors.push(
                         ValidateNewArticleError.INCORRECT_NEW_IMAGE_BLOCK_TITLE,
                     );
@@ -75,10 +108,10 @@ export const validateNewArticleData = async (
         }
     }
 
-    if (!newBlocks?.length) {
+    if (!blocks?.length) {
         errors.push(ValidateNewArticleError.INCORRECT_NEW_BLOCKS_LENGTH);
     } else {
-        newBlocks.forEach(checkNewBlockData);
+        blocks.forEach(checkNewBlockData);
     }
 
     return errors;
