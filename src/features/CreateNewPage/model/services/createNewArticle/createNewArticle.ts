@@ -6,7 +6,7 @@ import { validateNewArticleData } from '../validateNewArticleData/validateNewArt
 import { Article } from '@/entities/Article';
 import { getUserAuthData } from '@/entities/User';
 
-function getFormattedDate(): string {
+export function getFormattedDate(): string {
     const date = new Date();
     const day = date.getDate();
     const month = date.getMonth() + 1;
@@ -20,7 +20,7 @@ export const createNewArticle = createAsyncThunk<
     Article,
     void,
     ThunkConfig<ValidateNewArticleError[]>
->('profile/updateProfileData', async (_, thunkApi) => {
+>('article/updateProfileData', async (_, thunkApi) => {
     const { extra, rejectWithValue, getState } = thunkApi;
     const user = getUserAuthData(getState());
     const newArticleData = getCreateNewArticlePageData(getState());
@@ -36,7 +36,7 @@ export const createNewArticle = createAsyncThunk<
             views: 0,
             createdAt: getFormattedDate(),
             userId: user?.id,
-            type: [newArticleData?.type?.[0]],
+            type: [newArticleData?.type],
             blocks: newArticleData?.blocks,
         });
 
@@ -47,6 +47,6 @@ export const createNewArticle = createAsyncThunk<
         return response.data;
     } catch (e) {
         console.log(e);
-        return rejectWithValue([ValidateNewArticleError.SERVER_ERROR]);
+        return rejectWithValue([ValidateNewArticleError.SERVER_ERROR_SAVE]);
     }
 });

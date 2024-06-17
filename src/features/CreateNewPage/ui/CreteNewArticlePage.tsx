@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { memo, useCallback } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { classNames } from '@/shared/lib/classNames/classNames';
 import {
@@ -16,6 +16,7 @@ import {
     ArticleBlock,
     ArticleBlockType,
     ArticleType,
+    fetchArticleById,
 } from '@/entities/Article';
 import {
     getCreateNewArticlePageData,
@@ -26,9 +27,12 @@ import { CreateNewArticleForm } from './CreateNewArticleForm/CreateNewArticleFor
 import { Text } from '@/shared/ui/redesigned/Text';
 import { createNewArticle } from '../model/services/createNewArticle/createNewArticle';
 import { ValidateNewArticleError } from '../model/consts/consts';
+import { updateArticleData } from '../model/services/updateArticleData/updateArticleData';
 
 interface CreteNewArticlePageProps {
     className?: string;
+    type: string;
+    id?: string;
 }
 
 const reducers: ReducersList = {
@@ -36,38 +40,24 @@ const reducers: ReducersList = {
 };
 
 export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
-    const { className } = props;
+    const { className, type, id } = props;
     const { t } = useTranslation();
     const dispatch = useAppDispatch();
     const createNewArticleData = useSelector(getCreateNewArticlePageData);
     const validateErrors = useSelector(getCreateNewArticlePageValidateErrors);
 
-    // const ArticleTest: Article = {
-    //     title: '123',
-    //     subtitle: '123',
-    //     img: '123',
-    //
-    //     type: [ArticleType.ALL],
-    //     blocks: [{ id: '12', code: '123', type: ArticleBlockType.CODE }],
-    //
-    //     id: '1',
-    //     user: {
-    //         id: '1',
-    //         username: '123',
-    //     },
-    //     views: 123,
-    //     createdAt: '123',
-    // };
-
-    // const CreateNewArticleTest: CreateNewArticle = {
-    //     ...ArticleTest,
-    //     newBlockType: ArticleBlockType.TEXT,
-    // };
-    // console.log(CreateNewArticleTest);
+    useEffect(() => {
+        if (__PROJECT__ !== 'storybook' && type === 'edit') {
+            dispatch(fetchArticleById(id));
+        }
+    }, [dispatch, id, type]);
 
     const validateErrorTranslates = {
-        [ValidateNewArticleError.SERVER_ERROR]: t(
+        [ValidateNewArticleError.SERVER_ERROR_SAVE]: t(
             'Серверная ошибка при сохранении',
+        ),
+        [ValidateNewArticleError.SERVER_ERROR_GET]: t(
+            'Серверная ошибка при получении данных',
         ),
         [ValidateNewArticleError.NO_DATA]: t('Данные не указаны'),
         [ValidateNewArticleError.INCORRECT_TITLE]: t('Некорректный заголовок'),
@@ -187,8 +177,12 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
     );
 
     const onSaveNewArticle = useCallback(() => {
-        dispatch(createNewArticle());
-    }, [dispatch]);
+        if (type === 'edit') {
+            dispatch(updateArticleData());
+        } else {
+            dispatch(createNewArticle());
+        }
+    }, [dispatch, type]);
 
     return (
         <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
@@ -212,6 +206,7 @@ export const CreteNewArticlePage = memo((props: CreteNewArticlePageProps) => {
                     onCreateNewBlock={createNewBlockHandler}
                     onSaveNewArticle={onSaveNewArticle}
                     onAddTypeOfArticleSelector={onAddTypeOfArticleSelector}
+                    pageType={type}
                 />
             </VStack>
         </DynamicModuleLoader>

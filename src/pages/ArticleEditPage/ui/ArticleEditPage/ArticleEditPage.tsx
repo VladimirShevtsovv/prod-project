@@ -24,9 +24,9 @@ const ArticleEditPage = memo((props: ArticleEditPageProps) => {
                     className={classNames(cls.ArticleEditPage, {}, [className])}
                 >
                     {isEdit ? (
-                        t('Редактирование статьи с ID = ') + id
+                        <CreteNewArticlePage type="edit" id={id} />
                     ) : (
-                        <CreteNewArticlePage />
+                        <CreteNewArticlePage type="create" />
                     )}
                 </Page>
             }

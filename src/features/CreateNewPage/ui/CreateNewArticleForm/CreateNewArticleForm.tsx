@@ -24,6 +24,7 @@ interface CreateNewArticleFormProps {
     onCreateNewBlock: (data: ArticleBlock[]) => void;
     onSaveNewArticle?: () => void;
     onAddTypeOfArticleSelector?: () => void;
+    pageType: string;
 }
 
 export const CreateNewArticleForm = memo((props: CreateNewArticleFormProps) => {
@@ -38,6 +39,7 @@ export const CreateNewArticleForm = memo((props: CreateNewArticleFormProps) => {
         onCreateNewBlock,
         onSaveNewArticle,
         onAddTypeOfArticleSelector,
+        pageType,
     } = props;
     const { t } = useTranslation();
 
@@ -70,7 +72,9 @@ export const CreateNewArticleForm = memo((props: CreateNewArticleFormProps) => {
                 onChange={onChangeNewBlockType}
             />
             <Button onClick={onSaveNewArticle}>
-                {t('Создать новую статью')}
+                {pageType === 'edit'
+                    ? t('Обновить данные статьи')
+                    : t('Создать новую статью')}
             </Button>
         </div>
     );

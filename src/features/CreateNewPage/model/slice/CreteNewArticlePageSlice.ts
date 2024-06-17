@@ -6,8 +6,11 @@ import {
     ArticleBlockType,
     ArticleType,
     CreateNewArticle,
+    fetchArticleById,
 } from '@/entities/Article';
 import { createNewArticle } from '../services/createNewArticle/createNewArticle';
+import { ValidateNewArticleError } from '../consts/consts';
+import { updateArticleData } from '../services/updateArticleData/updateArticleData';
 
 const initialState: CreateNewArticleSchema = {
     isLoading: false,
@@ -52,22 +55,6 @@ export const createNewArticleSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(revertAll, () => initialState)
-            // .addCase(fetchProfileData.pending, (state) => {
-            //     state.error = undefined;
-            //     state.isLoading = true;
-            // })
-            // .addCase(
-            //     fetchProfileData.fulfilled,
-            //     (state, action: PayloadAction<Profile>) => {
-            //         state.isLoading = false;
-            //         state.data = action.payload;
-            //         state.form = action.payload;
-            //     },
-            // )
-            // .addCase(fetchProfileData.rejected, (state, action) => {
-            //     state.isLoading = false;
-            //     state.error = action.payload;
-            // })
             .addCase(createNewArticle.pending, (state) => {
                 state.validateErrors = undefined;
                 state.isLoading = true;
@@ -88,6 +75,42 @@ export const createNewArticleSlice = createSlice({
             .addCase(createNewArticle.rejected, (state, action) => {
                 state.isLoading = false;
                 state.validateErrors = action.payload;
+            })
+            .addCase(fetchArticleById.pending, (state) => {
+                state.validateErrors = undefined;
+                state.isLoading = true;
+            })
+            .addCase(
+                fetchArticleById.fulfilled,
+                (state, action: PayloadAction<Article>) => {
+                    state.isLoading = false;
+                    state.data = {
+                        ...action.payload,
+                    };
+                },
+            )
+            .addCase(fetchArticleById.rejected, (state) => {
+                state.isLoading = false;
+                state.validateErrors = [
+                    ValidateNewArticleError.SERVER_ERROR_GET,
+                ];
+            })
+            .addCase(updateArticleData.pending, (state) => {
+                state.validateErrors = undefined;
+                state.isLoading = true;
+            })
+            .addCase(
+                updateArticleData.fulfilled,
+                (state, action: PayloadAction<Article>) => {
+                    state.isLoading = false;
+                    window.location.href = `/articles/${action.payload.id}`;
+                },
+            )
+            .addCase(updateArticleData.rejected, (state, action) => {
+                state.isLoading = false;
+                state.validateErrors = [
+                    ValidateNewArticleError.SERVER_ERROR_SAVE,
+                ];
             });
     },
 });
